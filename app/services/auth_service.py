@@ -14,6 +14,7 @@ class AuthService:
             raise HTTPException(400, "Email already registered")
         
         user = User(
+            name=payload.name,
             email=payload.email,
             hashed_password=hash_password(payload.password),
             role=payload.role
