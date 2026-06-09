@@ -9,6 +9,20 @@ class EnrollmentRepository:
             Enrollment.user_id == user_id,
             Enrollment.course_id == course_id
         ).first()
+
+    @staticmethod
+    def get_by_id(db, enrollment_id):
+        return db.query(Enrollment).filter(Enrollment.id == enrollment_id).first()
+
+    @staticmethod
+    def list_all(db):
+        return db.query(Enrollment).all()
+
+    @staticmethod
+    def list_by_course(db, course_id):
+        return db.query(Enrollment).filter(
+            Enrollment.course_id == course_id
+        ).all()
     
     @staticmethod
     def create(db, user_id, course_id):
@@ -19,6 +33,12 @@ class EnrollmentRepository:
         db.add(enrollment)
         db.commit()
         db.refresh(enrollment)
+        return enrollment
+
+    @staticmethod
+    def delete(db, enrollment):
+        db.delete(enrollment)
+        db.commit()
         return enrollment
 
     @staticmethod
