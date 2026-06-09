@@ -75,6 +75,7 @@ For deployed API docs, visit:
 
 - Swagger UI: `https://course-enrollment-api-1.onrender.com/docs`
 - ReDoc: `https://course-enrollment-api-1.onrender.com/redoc`
+- Documentation: `https://docs.google.com/document/d/131c4hDzR4X5KkaCOtNKKhBhmlf5QljhbVlNd1zZUyWY/edit?usp=sharing`
 
 ## Environment Variables
 
