@@ -24,3 +24,29 @@ class EnrollmentService:
             raise HTTPException(400, "Course is full")
         
         return EnrollmentRepository.create(db, user_id, course_id)
+
+    @staticmethod
+    def deregister(db, user_id, course_id):
+        enrollment = EnrollmentRepository.get(db, user_id, course_id)
+        if enrollment is None:
+            raise HTTPException(404, "Enrollment not found")
+
+        return EnrollmentRepository.delete(db, enrollment)
+
+    @staticmethod
+    def list_all(db):
+        return EnrollmentRepository.list_all(db)
+
+    @staticmethod
+    def list_by_course(db, course_id):
+        course = CourseRepository.get_by_id(db, course_id)
+        if course is None:
+            raise HTTPException(404, "Course not found")
+        return EnrollmentRepository.list_by_course(db, course_id)
+
+    @staticmethod
+    def remove(db, enrollment_id):
+        enrollment = EnrollmentRepository.get_by_id(db, enrollment_id)
+        if enrollment is None:
+            raise HTTPException(404, "Enrollment not found")
+        return EnrollmentRepository.delete(db, enrollment)
